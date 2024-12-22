@@ -7,7 +7,7 @@
 
 [Official Documentation](https://docs.ltpp.vip/HTTP-COMPRESS/)
 
-[Api Docs](https://docs.rs/http-compress/latest/http-compress/)
+[Api Docs](https://docs.rs/http-compress/latest/http_compress/)
 
 > A lightweight library for decompressing HTTP responses supporting Brotli, Deflate, and Gzip.
 
@@ -25,9 +25,9 @@ cargo add http-compress
 
 ```rust
 use http_compress::*;
-use http_type::Header;
+use http_type::*;
 use std::collections::HashMap;
-let headers: Header = HashMap::new();
+let headers: HttpHeaderMap = HashMap::new();
 let data: Vec<u8> = vec![];
 let body: Vec<u8> = Compress::from(&headers).decode(&data, 1024);
 assert_eq!(body, data);
