@@ -106,9 +106,9 @@ dependencies = [
 
 [[package]]
 name = "http-type"
-version = "0.0.3"
+version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0aa4eea09cdd04c4ae1022f496011578de550d297dbbaa4e5273e188e3c8415f"
+checksum = "33ca2c92f65244b2202e859bda54325da9d881ffe751bb435a302adb071fba5a"
 dependencies = [
  "hex",
  "http-constant",
