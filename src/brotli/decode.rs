@@ -13,6 +13,7 @@ use std::io::Read;
 ///
 /// # Returns
 /// A `Vec<u8>` containing the decompressed data, or an empty `Vec<u8>` if decompression fails.
+#[inline]
 pub fn decode(data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
     let mut decompressor: Decompressor<&[u8]> = Decompressor::new(data.as_slice(), buffer_size);
     let mut decompressed_data: Vec<u8> = Vec::new();

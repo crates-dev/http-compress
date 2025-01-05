@@ -15,6 +15,7 @@ use std::io::{BufReader, Read};
 /// # Returns
 /// - `Vec<u8>` - The decompressed data as a vector of bytes. If decompression fails,
 ///   an empty `Vec<u8>` is returned.
+#[inline]
 pub fn decode(data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
     let decoder: GzDecoder<&[u8]> = GzDecoder::new(data.as_slice());
     let mut buffered_reader: BufReader<GzDecoder<&[u8]>> =

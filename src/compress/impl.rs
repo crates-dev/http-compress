@@ -38,6 +38,7 @@ impl Compress {
     /// # Returns
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
+    #[inline]
     pub fn from(header: &HttpHeaderMap) -> Self {
         let content_encoding_key: String = CONTENT_ENCODING.to_lowercase();
         let mut compress: Compress = Self::default();
@@ -61,6 +62,7 @@ impl Compress {
     ///
     /// # Returns
     /// - A `Vec<u8>` containing the decompressed data.
+    #[inline]
     pub fn decode(&self, data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
         match self {
             Self::Gzip => gzip::decode::decode(data, buffer_size),

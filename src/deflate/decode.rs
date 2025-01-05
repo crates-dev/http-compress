@@ -9,6 +9,7 @@ use std::io::{BufReader, Read};
 ///
 /// # Returns
 /// A `Vec<u8>` containing the decompressed data, or an empty `Vec<u8>` in case of error.
+#[inline]
 pub fn decode(data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
     let decoder: DeflateDecoder<&[u8]> = DeflateDecoder::new(data.as_slice());
     let mut buffered_reader: BufReader<DeflateDecoder<&[u8]>> =
