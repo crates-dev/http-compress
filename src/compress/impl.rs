@@ -4,8 +4,7 @@ use super::{
 };
 use crate::{brotli, deflate, gzip};
 use http_constant::CONTENT_ENCODING;
-use http_type::*;
-use std::str::FromStr;
+use std::{collections::HashMap, str::FromStr};
 
 impl Default for Compress {
     fn default() -> Self {
@@ -39,7 +38,7 @@ impl Compress {
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
     #[inline]
-    pub fn from(header: &HttpHeaderMap) -> Self {
+    pub fn from(header: &HashMap<String, String>) -> Self {
         let content_encoding_key: String = CONTENT_ENCODING.to_lowercase();
         let mut compress: Compress = Self::default();
         for (key, value) in header {
