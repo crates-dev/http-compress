@@ -22,3 +22,4 @@ pub fn decode(data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
         _ => Vec::new(),
     }
 }
+

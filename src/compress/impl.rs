@@ -70,4 +70,31 @@ impl Compress {
             Self::Unknown => data.clone(),
         }
     }
+
+    /// Compresses the given data based on the selected compression algorithm.
+    ///
+    /// This method takes a byte vector of data and compresses it using one of the following
+    /// compression algorithms, depending on the variant of the enum it is called on:
+    /// - `Gzip` - Compresses using Gzip compression.
+    /// - `Deflate` - Compresses using Deflate compression.
+    /// - `Br` - Compresses using Brotli compression.
+    /// - `Unknown` - Returns the input data unchanged.
+    ///
+    /// # Parameters
+    /// - `data` - A reference to a `Vec<u8>` containing the data to be compressed.
+    /// - `buffer_size` - The buffer size to use for the compression process. A larger
+    ///   buffer size may improve performance for larger datasets.
+    ///
+    /// # Returns
+    /// - `Vec<u8>` - The compressed data as a vector of bytes. If the compression algorithm
+    ///   is unknown (`Self::Unknown`), the original data is returned unchanged.
+    #[inline]
+    pub fn encode(&self, data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
+        match self {
+            Self::Gzip => gzip::encode::encode(data, buffer_size),
+            Self::Deflate => deflate::encode::encode(data, buffer_size),
+            Self::Br => brotli::encode::encode(data),
+            Self::Unknown => data.clone(),
+        }
+    }
 }
