@@ -1,10 +1,7 @@
-use super::{
-    constant::{BR, DEFLATE, GZIP},
-    r#type::Compress,
-};
+use super::r#type::Compress;
 use crate::{brotli, deflate, gzip};
-use http_constant::CONTENT_ENCODING;
-use std::{borrow::Cow, collections::HashMap, str::FromStr};
+use http_constant::*;
+use std::{borrow::Cow, collections::HashMap, fmt, str::FromStr};
 
 impl Default for Compress {
     fn default() -> Self {
@@ -17,11 +14,23 @@ impl FromStr for Compress {
 
     fn from_str(data: &str) -> Result<Self, Self::Err> {
         match data.to_lowercase().as_str() {
-            _data if _data == GZIP => Ok(Self::Gzip),
-            _data if _data == DEFLATE => Ok(Self::Deflate),
-            _data if _data == BR => Ok(Self::Br),
+            _data if _data == CONTENT_ENCODING_GZIP => Ok(Self::Gzip),
+            _data if _data == CONTENT_ENCODING_DEFLATE => Ok(Self::Deflate),
+            _data if _data == CONTENT_ENCODING_BROTLI => Ok(Self::Br),
             _ => Ok(Self::Unknown),
         }
+    }
+}
+
+impl fmt::Display for Compress {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let display_str = match *self {
+            Compress::Gzip => CONTENT_ENCODING_GZIP,
+            Compress::Deflate => CONTENT_ENCODING_DEFLATE,
+            Compress::Br => CONTENT_ENCODING_BROTLI,
+            Compress::Unknown => EMPTY_STR,
+        };
+        write!(f, "{}", display_str)
     }
 }
 
