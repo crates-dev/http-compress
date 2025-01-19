@@ -26,6 +26,19 @@ impl FromStr for Compress {
 }
 
 impl Compress {
+    /// Checks if the current instance is of the `Unknown` type.
+    ///
+    /// This method compares the current instance with the `Unknown` variant of the enum.
+    /// It returns `true` if the instance is of type `Unknown`, otherwise `false`.
+    ///
+    /// # Returns
+    /// - `true` if the instance is of type `Unknown`.
+    /// - `false` otherwise.
+    #[inline]
+    pub fn is_unknown(&self) -> bool {
+        *self == Self::Unknown
+    }
+
     /// Extracts the compression type from an HTTP header.
     ///
     /// This function looks for the `Content-Encoding` header in the provided `Header` and attempts
