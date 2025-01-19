@@ -4,7 +4,7 @@ use super::{
 };
 use crate::{brotli, deflate, gzip};
 use http_constant::CONTENT_ENCODING;
-use std::{collections::HashMap, str::FromStr};
+use std::{borrow::Cow, collections::HashMap, str::FromStr};
 
 impl Default for Compress {
     fn default() -> Self {
@@ -50,51 +50,59 @@ impl Compress {
         compress
     }
 
-    /// Decodes data based on the compression type.
+    /// Decompresses the given data based on the selected compression algorithm.
     ///
-    /// This function decodes the compressed data using the corresponding compression algorithm
-    /// (Gzip, Deflate, or Brotli) depending on the `Compress` enum value.
+    /// This method takes a byte slice of compressed data and decompresses it using one of the following
+    /// compression algorithms, depending on the variant of the enum it is called on:
+    /// - `Gzip` - Decompresses using Gzip compression.
+    /// - `Deflate` - Decompresses using Deflate compression.
+    /// - `Br` - Decompresses using Brotli compression.
+    /// - `Unknown` - Returns the input data as-is (no decompression performed).
     ///
-    /// # Arguments
-    /// - `data` - A vector of bytes containing the compressed data.
-    /// - `buffer_size` - The buffer size to use during decompression.
+    /// # Parameters
+    /// - `data` - A reference to a byte slice (`&[u8]`) containing the compressed data to be decoded.
+    /// - `buffer_size` - The buffer size to use for the decompression process. A larger buffer size can
+    ///   improve performance for larger datasets.
     ///
     /// # Returns
-    /// - A `Vec<u8>` containing the decompressed data.
+    /// - `Cow<Vec<u8>>` - The decompressed data as a `Cow<Vec<u8>>`. If the compression algorithm
+    ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
+    ///   the decompressed data is returned as an owned `Vec<u8>`.
     #[inline]
-    pub fn decode(&self, data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
+    pub fn decode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, Vec<u8>> {
         match self {
             Self::Gzip => gzip::decode::decode(data, buffer_size),
             Self::Deflate => deflate::decode::decode(data, buffer_size),
             Self::Br => brotli::decode::decode(data, buffer_size),
-            Self::Unknown => data.clone(),
+            Self::Unknown => Cow::Owned(data.to_vec()),
         }
     }
 
     /// Compresses the given data based on the selected compression algorithm.
     ///
-    /// This method takes a byte vector of data and compresses it using one of the following
+    /// This method takes a byte slice of data and compresses it using one of the following
     /// compression algorithms, depending on the variant of the enum it is called on:
     /// - `Gzip` - Compresses using Gzip compression.
     /// - `Deflate` - Compresses using Deflate compression.
     /// - `Br` - Compresses using Brotli compression.
-    /// - `Unknown` - Returns the input data unchanged.
+    /// - `Unknown` - Returns the input data as-is (no compression performed).
     ///
     /// # Parameters
-    /// - `data` - A reference to a `Vec<u8>` containing the data to be compressed.
-    /// - `buffer_size` - The buffer size to use for the compression process. A larger
-    ///   buffer size may improve performance for larger datasets.
+    /// - `data` - A reference to a byte slice (`&[u8]`) containing the data to be compressed.
+    /// - `buffer_size` - The buffer size to use for the compression process. A larger buffer size can
+    ///   improve performance for larger datasets.
     ///
     /// # Returns
-    /// - `Vec<u8>` - The compressed data as a vector of bytes. If the compression algorithm
-    ///   is unknown (`Self::Unknown`), the original data is returned unchanged.
+    /// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. If the compression algorithm
+    ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
+    ///   the compressed data is returned as an owned `Vec<u8>`.
     #[inline]
-    pub fn encode(&self, data: &Vec<u8>, buffer_size: usize) -> Vec<u8> {
+    pub fn encode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, Vec<u8>> {
         match self {
             Self::Gzip => gzip::encode::encode(data, buffer_size),
             Self::Deflate => deflate::encode::encode(data, buffer_size),
             Self::Br => brotli::encode::encode(data),
-            Self::Unknown => data.clone(),
+            Self::Unknown => Cow::Owned(data.to_vec()),
         }
     }
 }
