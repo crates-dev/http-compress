@@ -71,7 +71,7 @@ dependencies = [
 
 [[package]]
 name = "http-compress"
-version = "2.2.0"
+version = "2.2.1"
 dependencies = [
  "brotli",
  "flate2",
@@ -80,9 +80,9 @@ dependencies = [
 
 [[package]]
 name = "http-constant"
-version = "1.26.0"
+version = "1.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0e6d6d1dab5c7e7dfd78192e6ac4e1fada87d5e906865469d634083b528b7e00"
+checksum = "7c55fae5d1478014c77ea58dd6248f13dfc17222a969c5f335be2f244d7c3497"
 
 [[package]]
 name = "miniz_oxide"
