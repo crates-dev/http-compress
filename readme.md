@@ -3,6 +3,7 @@
 ## http-compress
 
 [![](https://img.shields.io/crates/v/http-compress.svg)](https://crates.io/crates/http-compress)
+[![](https://img.shields.io/crates/d/http-compress.svg)](https://img.shields.io/crates/d/http-compress.svg)
 [![](https://docs.rs/http-compress/badge.svg)](https://docs.rs/http-compress)
 [![](https://github.com/ltpp-universe/http-compress/workflows/Rust/badge.svg)](https://github.com/ltpp-universe/http-compress/actions?query=workflow:Rust)
 [![](https://img.shields.io/crates/l/http-compress.svg)](./LICENSE)
