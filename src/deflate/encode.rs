@@ -1,8 +1,4 @@
-use flate2::write::DeflateEncoder;
-use flate2::Compression;
-use std::borrow::Cow;
-use std::io::prelude::*;
-use std::io::BufWriter;
+use crate::*;
 
 /// Compresses the given data using the Deflate compression algorithm.
 ///

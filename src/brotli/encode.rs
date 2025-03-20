@@ -1,7 +1,4 @@
-use flate2::write::GzEncoder;
-use flate2::Compression;
-use std::borrow::Cow;
-use std::io::prelude::*;
+use crate::*;
 
 /// Compresses the given data using Gzip compression.
 ///

@@ -1,8 +1,4 @@
-use flate2::read::DeflateDecoder;
-use std::{
-    borrow::Cow,
-    io::{BufReader, Read},
-};
+use crate::*;
 
 /// Decompresses the given Deflate compressed data.
 ///

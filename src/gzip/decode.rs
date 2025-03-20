@@ -1,8 +1,4 @@
-use flate2::read::GzDecoder;
-use std::{
-    borrow::Cow,
-    io::{BufReader, Read},
-};
+use crate::*;
 
 /// Decompresses the given Gzip-compressed data.
 ///

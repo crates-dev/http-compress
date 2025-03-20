@@ -1,7 +1,4 @@
-use super::r#type::Compress;
-use crate::{brotli, deflate, gzip};
-use http_constant::*;
-use std::{borrow::Cow, collections::HashMap, fmt, str::FromStr};
+use crate::*;
 
 impl Default for Compress {
     fn default() -> Self {

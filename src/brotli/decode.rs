@@ -1,5 +1,4 @@
-use brotli::Decompressor;
-use std::{borrow::Cow, io::Read};
+use crate::*;
 
 /// Decompresses the given data using the specified decompressor.
 ///
