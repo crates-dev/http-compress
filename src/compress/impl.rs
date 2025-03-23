@@ -55,7 +55,7 @@ impl Compress {
     /// # Returns
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
-    pub fn from(header: &HashMap<String, String>) -> Self {
+    pub fn from(header: &HashMap<String, String, BuildHasherDefault<XxHash3_64>>) -> Self {
         header
             .get(CONTENT_ENCODING)
             .map(|value| value.parse::<Compress>().unwrap_or_default())

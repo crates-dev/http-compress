@@ -1,6 +1,6 @@
 [package]
 name = "http-compress"
-version = "2.9.3"
+version = "2.9.4"
 edition = "2024"
 authors = ["ltpp-universe <root@ltpp.vip>"] 
 license = "MIT"
@@ -19,6 +19,7 @@ exclude = [
 brotli = "7.0.0"
 flate2 = "1.1.0"
 http-constant = "1.39.0"
+twox-hash = "2.1.0"
 
 [profile.dev]
 incremental = false

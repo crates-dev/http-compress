@@ -7,6 +7,7 @@ pub(crate) mod gzip;
 pub use compress::r#type::*;
 
 pub(crate) use ::brotli::Decompressor;
+pub(crate) use core::hash::BuildHasherDefault;
 pub(crate) use flate2::{
     Compression,
     read::{DeflateDecoder, GzDecoder},
@@ -20,3 +21,4 @@ pub(crate) use std::{
     io::{BufReader, BufWriter, Read, prelude::*},
     str::FromStr,
 };
+pub(crate) use twox_hash::XxHash3_64;
