@@ -40,7 +40,6 @@ impl Compress {
     /// # Returns
     /// - `true` if the instance is of type `Unknown`.
     /// - `false` otherwise.
-    #[inline]
     pub fn is_unknown(&self) -> bool {
         *self == Self::Unknown
     }
@@ -56,7 +55,6 @@ impl Compress {
     /// # Returns
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
-    #[inline]
     pub fn from(header: &HashMap<String, String>) -> Self {
         header
             .get(CONTENT_ENCODING)
@@ -82,7 +80,6 @@ impl Compress {
     /// - `Cow<Vec<u8>>` - The decompressed data as a `Cow<Vec<u8>>`. If the compression algorithm
     ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
     ///   the decompressed data is returned as an owned `Vec<u8>`.
-    #[inline]
     pub fn decode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, Vec<u8>> {
         match self {
             Self::Gzip => gzip::decode::decode(data, buffer_size),
@@ -110,7 +107,6 @@ impl Compress {
     /// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. If the compression algorithm
     ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
     ///   the compressed data is returned as an owned `Vec<u8>`.
-    #[inline]
     pub fn encode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, Vec<u8>> {
         match self {
             Self::Gzip => gzip::encode::encode(data, buffer_size),

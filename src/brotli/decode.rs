@@ -20,7 +20,6 @@ use crate::*;
 /// # Notes
 /// - The decompression process uses the `Decompressor` with the provided buffer size.
 /// - The use of `Cow` allows for optimization by avoiding unnecessary copying of data when not required.
-#[inline]
 pub fn decode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
     let mut decompressor: Decompressor<&[u8]> = Decompressor::new(data, buffer_size);
     let mut decompressed_data: Vec<u8> = Vec::new();

@@ -1,6 +1,6 @@
 [package]
 name = "http-compress"
-version = "2.9.2"
+version = "2.9.3"
 edition = "2024"
 authors = ["ltpp-universe <root@ltpp.vip>"] 
 license = "MIT"

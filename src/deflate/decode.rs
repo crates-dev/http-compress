@@ -20,7 +20,6 @@ use crate::*;
 /// # Notes
 /// - The decompression process uses the `DeflateDecoder` with the provided buffer size.
 /// - The use of `Cow` allows for optimization by avoiding unnecessary copying of data when not required.
-#[inline]
 pub fn decode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
     let decoder: DeflateDecoder<&[u8]> = DeflateDecoder::new(data);
     let mut buffered_reader: BufReader<DeflateDecoder<&[u8]>> =

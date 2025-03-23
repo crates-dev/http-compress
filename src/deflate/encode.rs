@@ -22,7 +22,6 @@ use crate::*;
 ///   (`Compression::default()`).
 /// - The use of a `BufWriter` optimizes the writing of data to the encoder by reducing the number
 ///   of write operations.
-#[inline]
 pub fn encode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
     let encoder: DeflateEncoder<Vec<u8>> = DeflateEncoder::new(Vec::new(), Compression::default());
     let mut buffered_writer: BufWriter<DeflateEncoder<Vec<u8>>> =

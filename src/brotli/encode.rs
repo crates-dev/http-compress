@@ -16,7 +16,6 @@ use crate::*;
 /// # Notes
 /// - The compression process uses `GzEncoder` with the default compression level (`Compression::default()`).
 /// - The use of `Cow` allows for optimization by avoiding unnecessary copying of data when not required.
-#[inline]
 pub fn encode(data: &[u8]) -> Cow<Vec<u8>> {
     let mut encoder: GzEncoder<Vec<u8>> = GzEncoder::new(Vec::new(), Compression::default());
     if let Err(_) = encoder.write_all(data) {

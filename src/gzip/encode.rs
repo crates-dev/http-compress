@@ -22,7 +22,6 @@ use crate::*;
 /// - A `BufWriter` is used to buffer the data during compression, which improves performance.
 /// - If an error occurs during the compression process, an empty `Vec<u8>` is returned to avoid
 ///   panics and to ensure the function always returns a valid value.
-#[inline]
 pub fn encode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
     let encoder: GzEncoder<Vec<u8>> = GzEncoder::new(Vec::new(), Compression::default());
     let mut buffered_writer: BufWriter<GzEncoder<Vec<u8>>> =

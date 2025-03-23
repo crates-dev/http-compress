@@ -22,7 +22,6 @@ use crate::*;
 /// - A `BufReader` is used to buffer the data during decompression, which improves performance.
 /// - If an error occurs during the decompression process, an empty `Vec<u8>` is returned to avoid
 ///   panics and to ensure the function always returns a valid value.
-#[inline]
 pub fn decode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
     let decoder: GzDecoder<&[u8]> = GzDecoder::new(data);
     let mut buffered_reader: BufReader<GzDecoder<&[u8]>> =
