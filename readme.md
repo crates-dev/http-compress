@@ -32,9 +32,9 @@ cargo add http-compress
 
 ```rust
 use http_compress::*;
-use std::{borrow::Cow};
+use std::{borrow::Cow, collections::HashMap};
 
-let headers: DashMap<_, _> = DashMap::new();
+let headers: HashMap<_, _> = HashMap::new();
 let data: Vec<u8> = vec![];
 let body: Cow<'_, Vec<u8>> = Compress::from(&headers).decode(&data, 1_024_000);
 assert_eq!(*body, data);

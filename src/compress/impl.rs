@@ -57,15 +57,11 @@ impl Compress {
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
     #[inline]
-    pub fn from(header: &DashMap<String, String>) -> Self {
-        let content_encoding_key: String = CONTENT_ENCODING.to_lowercase();
-        let compress = header
-            .par_iter()
-            .find_any(|entry| entry.key().eq_ignore_ascii_case(&content_encoding_key))
-            .map(|entry| entry.value().parse::<Compress>().unwrap_or_default())
-            .unwrap_or_default();
-
-        compress
+    pub fn from(header: &HashMap<String, String>) -> Self {
+        header
+            .get(CONTENT_ENCODING)
+            .map(|value| value.parse::<Compress>().unwrap_or_default())
+            .unwrap_or_default()
     }
 
     /// Decompresses the given data based on the selected compression algorithm.
