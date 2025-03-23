@@ -4,7 +4,9 @@ pub(crate) mod compress;
 pub(crate) mod deflate;
 pub(crate) mod gzip;
 
+pub use ahash::AHasher;
 pub use compress::r#type::*;
+pub use dashmap::DashMap;
 
 pub(crate) use ::brotli::Decompressor;
 pub(crate) use flate2::{
@@ -13,9 +15,9 @@ pub(crate) use flate2::{
     write::{DeflateEncoder, GzEncoder},
 };
 pub(crate) use http_constant::*;
+pub(crate) use rayon::prelude::*;
 pub(crate) use std::{
     borrow::Cow,
-    collections::HashMap,
     fmt,
     io::{BufReader, BufWriter, Read, prelude::*},
     str::FromStr,
