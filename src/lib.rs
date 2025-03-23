@@ -4,7 +4,6 @@ pub(crate) mod compress;
 pub(crate) mod deflate;
 pub(crate) mod gzip;
 
-pub use ahash::AHasher;
 pub use compress::r#type::*;
 pub use dashmap::DashMap;
 
