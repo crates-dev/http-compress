@@ -32,7 +32,6 @@ cargo add http-compress
 
 ```rust
 use http_compress::*;
-use twox_hash::XxHash3_64;
 use core::hash::BuildHasherDefault;
 use std::{borrow::Cow, collections::HashMap};
 

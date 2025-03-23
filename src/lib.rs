@@ -5,6 +5,7 @@ pub(crate) mod deflate;
 pub(crate) mod gzip;
 
 pub use compress::r#type::*;
+pub use twox_hash::XxHash3_64;
 
 pub(crate) use ::brotli::Decompressor;
 pub(crate) use core::hash::BuildHasherDefault;
@@ -21,4 +22,3 @@ pub(crate) use std::{
     io::{BufReader, BufWriter, Read, prelude::*},
     str::FromStr,
 };
-pub(crate) use twox_hash::XxHash3_64;
