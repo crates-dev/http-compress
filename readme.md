@@ -45,6 +45,7 @@ assert_eq!(*body, data);
 
 ```rust
 use http_compress::*;
+
 let _ = Compress::Gzip.encode(&[], 1_024_000);
 let _ = Compress::Deflate.encode(&[], 1_024_000);
 let _ = Compress::Br.encode(&[], 1_024_000);
@@ -54,6 +55,7 @@ let _ = Compress::Br.encode(&[], 1_024_000);
 
 ```rust
 use http_compress::*;
+
 let _ = Compress::Gzip.decode(&[], 1_024_000);
 let _ = Compress::Deflate.decode(&[], 1_024_000);
 let _ = Compress::Br.decode(&[], 1_024_000);
