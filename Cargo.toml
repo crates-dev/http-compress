@@ -1,6 +1,6 @@
 [package]
 name = "http-compress"
-version = "2.13.5"
+version = "2.13.6"
 edition = "2024"
 authors = ["root@ltpp.vip"] 
 license = "MIT"
@@ -17,8 +17,8 @@ exclude = [
 
 [dependencies]
 brotli = "8.0.1"
-flate2 = "1.1.1"
-twox-hash = "2.1.0"
+flate2 = "1.1.2"
+twox-hash = "2.1.1"
 
 [profile.dev]
 incremental = false
