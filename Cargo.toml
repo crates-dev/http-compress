@@ -1,8 +1,8 @@
 [package]
 name = "http-compress"
-version = "2.13.6"
+version = "2.13.7"
 edition = "2024"
-authors = ["root@ltpp.vip"] 
+authors = ["root@ltpp.vip"]
 license = "MIT"
 description = """A lightweight library for decompressing HTTP responses supporting Brotli, Deflate, and Gzip."""
 keywords = ["http", "request", "response", "tcp", "redirect"]
