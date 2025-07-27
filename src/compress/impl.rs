@@ -1,14 +1,36 @@
 use crate::*;
 
+/// Provides the default value for the `Compress` enum, which is `Unknown`.
 impl Default for Compress {
     fn default() -> Self {
         Self::Unknown
     }
 }
 
+/// Enables parsing a string into a `Compress` enum variant.
+///
+/// This implementation allows converting string representations of compression
+/// algorithms (like "gzip", "deflate", "br") into their corresponding `Compress`
+/// enum variants. If the string does not match any known compression types,
+/// it defaults to `Compress::Unknown`.
 impl FromStr for Compress {
     type Err = ();
 
+    /// Parses a string into a `Compress` enum variant.
+    ///
+    /// This method converts string representations of compression algorithms
+    /// (case-insensitive) into their corresponding `Compress` enum variants.
+    /// Unknown strings are converted to `Compress::Unknown`.
+    ///
+    /// # Arguments
+    ///
+    /// - `data` - The string to parse, which should be a compression algorithm name
+    ///   (e.g., "gzip", "deflate", "br").
+    ///
+    /// # Returns
+    ///
+    /// * `Result<Self, Self::Err>` - Returns `Ok` with the matching `Compress` variant,
+    ///   or `Ok(Compress::Unknown)` for unknown strings. Never returns `Err`.
     fn from_str(data: &str) -> Result<Self, Self::Err> {
         match data.to_lowercase().as_str() {
             _data if _data == CONTENT_ENCODING_GZIP => Ok(Self::Gzip),
@@ -19,6 +41,10 @@ impl FromStr for Compress {
     }
 }
 
+/// Implements the `Display` trait for the `Compress` enum.
+///
+/// This allows the `Compress` enum variants to be formatted as strings,
+/// typically used for outputting the `Content-Encoding` header value.
 impl fmt::Display for Compress {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let display_str = match *self {
@@ -31,6 +57,7 @@ impl fmt::Display for Compress {
     }
 }
 
+/// Provides methods for interacting with the `Compress` enum.
 impl Compress {
     /// Checks if the current instance is of the `Unknown` type.
     ///
@@ -38,6 +65,7 @@ impl Compress {
     /// It returns `true` if the instance is of type `Unknown`, otherwise `false`.
     ///
     /// # Returns
+    ///
     /// - `true` if the instance is of type `Unknown`.
     /// - `false` otherwise.
     pub fn is_unknown(&self) -> bool {
@@ -50,9 +78,11 @@ impl Compress {
     /// to parse it into a `Compress` enum value.
     ///
     /// # Arguments
+    ///
     /// - `header` - The HTTP header from which the compression type is to be extracted.
     ///
     /// # Returns
+    ///
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
     pub fn from(header: &HashMap<String, String, BuildHasherDefault<XxHash3_64>>) -> Self {
@@ -72,11 +102,13 @@ impl Compress {
     /// - `Unknown` - Returns the input data as-is (no decompression performed).
     ///
     /// # Parameters
+    ///
     /// - `data` - A reference to a byte slice (`&[u8]`) containing the compressed data to be decoded.
     /// - `buffer_size` - The buffer size to use for the decompression process. A larger buffer size can
     ///   improve performance for larger datasets.
     ///
     /// # Returns
+    ///
     /// - `Cow<Vec<u8>>` - The decompressed data as a `Cow<Vec<u8>>`. If the compression algorithm
     ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
     ///   the decompressed data is returned as an owned `Vec<u8>`.
@@ -99,11 +131,13 @@ impl Compress {
     /// - `Unknown` - Returns the input data as-is (no compression performed).
     ///
     /// # Parameters
+    ///
     /// - `data` - A reference to a byte slice (`&[u8]`) containing the data to be compressed.
     /// - `buffer_size` - The buffer size to use for the compression process. A larger buffer size can
     ///   improve performance for larger datasets.
     ///
     /// # Returns
+    ///
     /// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. If the compression algorithm
     ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
     ///   the compressed data is returned as an owned `Vec<u8>`.
