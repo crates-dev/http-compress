@@ -1,3 +1,8 @@
+//! http-compress
+//!
+//! A high-performance async library for HTTP compression/decompression,
+//! supporting Brotli, Deflate, and Gzip algorithms.
+
 pub(crate) mod brotli;
 pub(crate) mod cfg;
 pub(crate) mod compress;

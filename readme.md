@@ -14,7 +14,7 @@
 
 [Api Docs](https://docs.rs/http-compress/latest/http_compress/)
 
-> A lightweight library for decompressing HTTP responses supporting Brotli, Deflate, and Gzip.
+> A high-performance async library for HTTP compression/decompression, supporting Brotli, Deflate, and Gzip algorithms.
 
 ## Features
 
