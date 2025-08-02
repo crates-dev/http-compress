@@ -1,13 +1,13 @@
 [package]
 name = "http-compress"
-version = "2.16.2"
+version = "2.16.3"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
 license = "MIT"
 description = """A high-performance async library for HTTP compression/decompression, supporting Brotli, Deflate, and Gzip algorithms. Provides both compression and decompression capabilities with optimized memory usage, ideal for HTTP clients/servers and network programming."""
 keywords = ["http", "request", "response", "tcp", "redirect"]
-repository = "https://github.com/eastspire/http-compress.git"
+repository = "https://github.com/crates-dev/http-compress.git"
 categories = ["network-programming", "web-programming"]
 exclude = [
     "target",

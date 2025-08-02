@@ -5,7 +5,7 @@
 [![](https://img.shields.io/crates/v/http-compress.svg)](https://crates.io/crates/http-compress)
 [![](https://img.shields.io/crates/d/http-compress.svg)](https://img.shields.io/crates/d/http-compress.svg)
 [![](https://docs.rs/http-compress/badge.svg)](https://docs.rs/http-compress)
-[![](https://github.com/eastspire/http-compress/workflows/Rust/badge.svg)](https://github.com/eastspire/http-compress/actions?query=workflow:Rust)
+[![](https://github.com/crates-dev/http-compress/workflows/Rust/badge.svg)](https://github.com/crates-dev/http-compress/actions?query=workflow:Rust)
 [![](https://img.shields.io/crates/l/http-compress.svg)](./LICENSE)
 
 </center>
