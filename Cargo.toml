@@ -1,6 +1,6 @@
 [package]
 name = "http-compress"
-version = "2.16.4"
+version = "2.16.5"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]

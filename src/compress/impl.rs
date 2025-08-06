@@ -24,12 +24,11 @@ impl FromStr for Compress {
     ///
     /// # Arguments
     ///
-    /// - `data` - The string to parse, which should be a compression algorithm name
-    ///   (e.g., "gzip", "deflate", "br").
+    /// - `data` - The string to parse, which should be a compression algorithm name.
     ///
     /// # Returns
     ///
-    /// * `Result<Self, Self::Err>` - Returns `Ok` with the matching `Compress` variant,
+    /// - `Result<Self, Self::Err>` - Returns `Ok` with the matching `Compress` variant,
     ///   or `Ok(Compress::Unknown)` for unknown strings. Never returns `Err`.
     fn from_str(data: &str) -> Result<Self, Self::Err> {
         match data.to_lowercase().as_str() {
