@@ -10,7 +10,7 @@ use crate::*;
 /// # Returns
 ///
 /// - `Cow<Vec<u8>>` - The decompressed data.
-pub fn decode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
+pub fn decode(data: &'_ [u8], buffer_size: usize) -> Cow<'_, Vec<u8>> {
     let decoder: DeflateDecoder<&[u8]> = DeflateDecoder::new(data);
     let mut buffered_reader: BufReader<DeflateDecoder<&[u8]>> =
         BufReader::with_capacity(buffer_size, decoder);

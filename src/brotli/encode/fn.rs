@@ -12,7 +12,7 @@ use crate::*;
 /// # Returns
 /// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. The compressed data is returned as an
 ///   owned `Vec<u8>`. If compression fails, an empty owned `Vec<u8>` is returned.
-pub fn encode(data: &[u8]) -> Cow<Vec<u8>> {
+pub fn encode(data: &'_ [u8]) -> Cow<'_, Vec<u8>> {
     let mut encoder: GzEncoder<Vec<u8>> = GzEncoder::new(Vec::new(), Compression::default());
     if let Err(_) = encoder.write_all(data) {
         return Cow::Owned(Vec::new());

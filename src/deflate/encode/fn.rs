@@ -18,7 +18,7 @@ use crate::*;
 /// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. If compression is successful, the
 ///   compressed data is returned as an owned `Vec<u8>`. If an error occurs, an empty owned `Vec<u8>`
 ///   is returned.
-pub fn encode(data: &[u8], buffer_size: usize) -> Cow<Vec<u8>> {
+pub fn encode(data: &'_ [u8], buffer_size: usize) -> Cow<'_, Vec<u8>> {
     let encoder: DeflateEncoder<Vec<u8>> = DeflateEncoder::new(Vec::new(), Compression::default());
     let mut buffered_writer: BufWriter<DeflateEncoder<Vec<u8>>> =
         BufWriter::with_capacity(buffer_size, encoder);
