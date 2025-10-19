@@ -52,7 +52,7 @@ impl fmt::Display for Compress {
             Compress::Br => CONTENT_ENCODING_BROTLI,
             Compress::Unknown => EMPTY_STR,
         };
-        write!(f, "{}", display_str)
+        write!(f, "{display_str}")
     }
 }
 
