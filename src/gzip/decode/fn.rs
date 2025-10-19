@@ -15,10 +15,10 @@ use crate::*;
 ///
 /// # Returns
 ///
-/// - `Cow<Vec<u8>>` - The decompressed data as a `Cow<Vec<u8>>`. If decompression is successful, the
+/// - `Cow<[u8]>` - The decompressed data as a `Cow<[u8]>`. If decompression is successful, the
 ///   decompressed data is returned as an owned `Vec<u8>`. If an error occurs, an empty owned `Vec<u8>`
 ///   is returned.
-pub fn decode(data: &'_ [u8], buffer_size: usize) -> Cow<'_, Vec<u8>> {
+pub fn decode(data: &'_ [u8], buffer_size: usize) -> Cow<'_, [u8]> {
     let decoder: GzDecoder<&[u8]> = GzDecoder::new(data);
     let mut buffered_reader: BufReader<GzDecoder<&[u8]>> =
         BufReader::with_capacity(buffer_size, decoder);

@@ -108,10 +108,10 @@ impl Compress {
     ///
     /// # Returns
     ///
-    /// - `Cow<Vec<u8>>` - The decompressed data as a `Cow<Vec<u8>>`. If the compression algorithm
+    /// - `Cow<[u8]>` - The decompressed data as a `Cow<[u8]>`. If the compression algorithm
     ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
     ///   the decompressed data is returned as an owned `Vec<u8>`.
-    pub fn decode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, Vec<u8>> {
+    pub fn decode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, [u8]> {
         match self {
             Self::Gzip => gzip::decode::decode(data, buffer_size),
             Self::Deflate => deflate::decode::decode(data, buffer_size),
@@ -137,10 +137,10 @@ impl Compress {
     ///
     /// # Returns
     ///
-    /// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. If the compression algorithm
+    /// - `Cow<[u8]>` - The compressed data as a `Cow<[u8]>`. If the compression algorithm
     ///   is `Unknown`, the original data is returned unchanged, as a borrowed reference. Otherwise,
     ///   the compressed data is returned as an owned `Vec<u8>`.
-    pub fn encode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, Vec<u8>> {
+    pub fn encode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, [u8]> {
         match self {
             Self::Gzip => gzip::encode::encode(data, buffer_size),
             Self::Deflate => deflate::encode::encode(data, buffer_size),

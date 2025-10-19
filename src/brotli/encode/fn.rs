@@ -10,11 +10,11 @@ use crate::*;
 /// - `data` - A reference to a byte slice (`&[u8]`) containing the data to be compressed.
 ///
 /// # Returns
-/// - `Cow<Vec<u8>>` - The compressed data as a `Cow<Vec<u8>>`. The compressed data is returned as an
+/// - `Cow<[u8]>` - The compressed data as a `Cow<[u8]>`. The compressed data is returned as an
 ///   owned `Vec<u8>`. If compression fails, an empty owned `Vec<u8>` is returned.
-pub fn encode(data: &'_ [u8]) -> Cow<'_, Vec<u8>> {
+pub fn encode(data: &'_ [u8]) -> Cow<'_, [u8]> {
     let mut encoder: GzEncoder<Vec<u8>> = GzEncoder::new(Vec::new(), Compression::default());
-    if let Err(_) = encoder.write_all(data) {
+    if encoder.write_all(data).is_err() {
         return Cow::Owned(Vec::new());
     }
     Cow::Owned(encoder.finish().unwrap_or_else(|_| Vec::new()))

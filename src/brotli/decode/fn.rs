@@ -13,10 +13,10 @@ use crate::*;
 ///   improve performance for larger datasets.
 ///
 /// # Returns
-/// - `Cow<Vec<u8>>` - The decompressed data as a `Cow<Vec<u8>>`. If decompression is successful, the
+/// - `Cow<[u8]>` - The decompressed data as a `Cow<[u8]>`. If decompression is successful, the
 ///   decompressed data is returned as an owned `Vec<u8>`. In case of an error, an empty owned
 ///   `Vec<u8>` is returned.
-pub fn decode(data: &'_ [u8], buffer_size: usize) -> Cow<'_, Vec<u8>> {
+pub fn decode(data: &'_ [u8], buffer_size: usize) -> Cow<'_, [u8]> {
     let mut decompressor: Decompressor<&[u8]> = Decompressor::new(data, buffer_size);
     let mut decompressed_data: Vec<u8> = Vec::new();
     match decompressor.read_to_end(&mut decompressed_data) {
