@@ -1,5 +1,5 @@
 /// Represents different compression algorithms supported by the library.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Default, PartialEq, Eq)]
 pub enum Compress {
     /// Gzip compression algorithm.
     Gzip,
@@ -8,5 +8,6 @@ pub enum Compress {
     /// Brotli compression algorithm.
     Br,
     /// Represents an unknown or unsupported compression algorithm.
+    #[default]
     Unknown,
 }

@@ -1,12 +1,5 @@
 use crate::*;
 
-/// Provides the default value for the `Compress` enum, which is `Unknown`.
-impl Default for Compress {
-    fn default() -> Self {
-        Self::Unknown
-    }
-}
-
 /// Enables parsing a string into a `Compress` enum variant.
 ///
 /// This implementation allows converting string representations of compression
@@ -30,6 +23,7 @@ impl FromStr for Compress {
     ///
     /// - `Result<Self, Self::Err>` - Returns `Ok` with the matching `Compress` variant,
     ///   or `Ok(Compress::Unknown)` for unknown strings. Never returns `Err`.
+    #[inline(always)]
     fn from_str(data: &str) -> Result<Self, Self::Err> {
         match data.to_lowercase().as_str() {
             _data if _data == CONTENT_ENCODING_GZIP => Ok(Self::Gzip),
@@ -45,6 +39,7 @@ impl FromStr for Compress {
 /// This allows the `Compress` enum variants to be formatted as strings,
 /// typically used for outputting the `Content-Encoding` header value.
 impl fmt::Display for Compress {
+    #[inline(always)]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let display_str = match *self {
             Compress::Gzip => CONTENT_ENCODING_GZIP,
@@ -67,6 +62,7 @@ impl Compress {
     ///
     /// - `true` if the instance is of type `Unknown`.
     /// - `false` otherwise.
+    #[inline(always)]
     pub fn is_unknown(&self) -> bool {
         *self == Self::Unknown
     }
@@ -84,6 +80,7 @@ impl Compress {
     ///
     /// - The `Compress` value corresponding to the `Content-Encoding` header, or `Compress::Unknown`
     ///   if the header does not match any known compression types.
+    #[inline(always)]
     pub fn from(header: &HashMap<String, String, BuildHasherDefault<XxHash3_64>>) -> Self {
         header
             .get(CONTENT_ENCODING)
