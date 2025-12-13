@@ -1,6 +1,6 @@
 [package]
 name = "http-compress"
-version = "3.0.4"
+version = "3.0.5"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
@@ -9,12 +9,7 @@ description = """A high-performance async library for HTTP compression/decompres
 keywords = ["http", "request", "response", "tcp", "redirect"]
 repository = "https://github.com/crates-dev/http-compress.git"
 categories = ["network-programming", "web-programming"]
-exclude = [
-    "target",
-    "Cargo.lock",
-    "sh",
-    ".github"
-]
+exclude = ["target", "Cargo.lock", "sh", ".github"]
 
 [dependencies]
 brotli = "8.0.2"
