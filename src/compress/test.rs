@@ -1,8 +1,7 @@
+use crate::*;
+
 #[test]
 fn test() {
-    use crate::*;
-    use std::borrow::Cow;
-
     let headers: HashMap<_, _, BuildHasherDefault<XxHash3_64>> =
         HashMap::with_hasher(BuildHasherDefault::default());
     let data: Vec<u8> = vec![];

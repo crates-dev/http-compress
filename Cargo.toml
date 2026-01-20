@@ -1,6 +1,6 @@
 [package]
 name = "http-compress"
-version = "3.0.8"
+version = "3.0.9"
 readme = "README.md"
 edition = "2024"
 authors = ["root@ltpp.vip"]
@@ -13,7 +13,7 @@ exclude = ["target", "Cargo.lock", "sh", ".github"]
 
 [dependencies]
 brotli = "8.0.2"
-flate2 = "1.1.5"
+flate2 = "1.1.8"
 twox-hash = "2.1.2"
 
 [profile.dev]
