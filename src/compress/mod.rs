@@ -4,3 +4,7 @@ pub(crate) mod r#type;
 
 #[cfg(test)]
 mod test;
+
+pub use r#type::*;
+
+pub(crate) use r#const::*;

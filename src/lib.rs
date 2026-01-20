@@ -10,10 +10,9 @@ pub(crate) mod compress;
 pub(crate) mod deflate;
 pub(crate) mod gzip;
 
-pub use compress::r#type::*;
-pub use twox_hash::XxHash3_64;
+pub use compress::*;
 
-pub(crate) use {::brotli::Decompressor, compress::r#const::*};
+pub use twox_hash::XxHash3_64;
 
 pub(crate) use std::{
     borrow::Cow,
@@ -23,6 +22,7 @@ pub(crate) use std::{
     str::FromStr,
 };
 
+pub(crate) use ::brotli::Decompressor;
 pub(crate) use core::hash::BuildHasherDefault;
 pub(crate) use flate2::{
     Compression,
