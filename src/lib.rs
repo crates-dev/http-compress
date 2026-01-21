@@ -22,10 +22,12 @@ use std::{
     str::FromStr,
 };
 
-use ::brotli::Decompressor;
-use core::hash::BuildHasherDefault;
-use flate2::{
-    Compression,
-    read::{DeflateDecoder, GzDecoder},
-    write::{DeflateEncoder, GzEncoder},
+use {
+    ::brotli::Decompressor,
+    core::hash::BuildHasherDefault,
+    flate2::{
+        Compression,
+        read::{DeflateDecoder, GzDecoder},
+        write::{DeflateEncoder, GzEncoder},
+    },
 };
