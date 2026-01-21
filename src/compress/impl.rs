@@ -110,9 +110,9 @@ impl Compress {
     ///   the decompressed data is returned as an owned `Vec<u8>`.
     pub fn decode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, [u8]> {
         match self {
-            Self::Gzip => gzip::decode::decode(data, buffer_size),
-            Self::Deflate => deflate::decode::decode(data, buffer_size),
-            Self::Br => brotli::decode::decode(data, buffer_size),
+            Self::Gzip => gzip::decode(data, buffer_size),
+            Self::Deflate => deflate::decode(data, buffer_size),
+            Self::Br => brotli::decode(data, buffer_size),
             Self::Unknown => Cow::Owned(data.to_vec()),
         }
     }
@@ -139,9 +139,9 @@ impl Compress {
     ///   the compressed data is returned as an owned `Vec<u8>`.
     pub fn encode<'a>(&self, data: &'a [u8], buffer_size: usize) -> Cow<'a, [u8]> {
         match self {
-            Self::Gzip => gzip::encode::encode(data, buffer_size),
-            Self::Deflate => deflate::encode::encode(data, buffer_size),
-            Self::Br => brotli::encode::encode(data),
+            Self::Gzip => gzip::encode(data, buffer_size),
+            Self::Deflate => deflate::encode(data, buffer_size),
+            Self::Br => brotli::encode(data),
             Self::Unknown => Cow::Owned(data.to_vec()),
         }
     }

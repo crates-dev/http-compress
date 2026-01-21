@@ -1,2 +1,3 @@
-pub(crate) mod decode;
-pub(crate) mod encode;
+mod r#fn;
+
+pub use r#fn::*;
