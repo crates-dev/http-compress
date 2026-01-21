@@ -5,16 +5,16 @@
 //! and decompression capabilities with optimized memory usage,
 //! ideal for HTTP clients/servers and network programming.
 
-pub(crate) mod brotli;
-pub(crate) mod compress;
-pub(crate) mod deflate;
-pub(crate) mod gzip;
+mod brotli;
+mod compress;
+mod deflate;
+mod gzip;
 
 pub use compress::*;
 
 pub use twox_hash::XxHash3_64;
 
-pub(crate) use std::{
+use std::{
     borrow::Cow,
     collections::HashMap,
     fmt,
@@ -22,9 +22,9 @@ pub(crate) use std::{
     str::FromStr,
 };
 
-pub(crate) use ::brotli::Decompressor;
-pub(crate) use core::hash::BuildHasherDefault;
-pub(crate) use flate2::{
+use ::brotli::Decompressor;
+use core::hash::BuildHasherDefault;
+use flate2::{
     Compression,
     read::{DeflateDecoder, GzDecoder},
     write::{DeflateEncoder, GzEncoder},
