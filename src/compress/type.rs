@@ -1,5 +1,5 @@
 /// Represents different compression algorithms supported by the library.
-#[derive(Debug, Default, PartialEq, Eq, Clone, Copy)]
+#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum Compress {
     /// Gzip compression algorithm.
     Gzip,
